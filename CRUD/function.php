@@ -12,31 +12,38 @@ if (isset($_POST['accion'])) {
         case 'eliminar_registro';
             eliminar_registro();
             break;
-
     }
 }
 
 function editar_registro()
 {
+
     $conexion = mysqli_connect("localhost", "root", "", "alba");
+
     extract($_POST);
     $consulta = "UPDATE usuarios SET nombre = '$nombre', correo = '$correo', telefono = '$telefono',
-		password ='$password', rol = '$rol' WHERE id = '$id' ";
+		password ='$password', rol_id = '$rol' WHERE id = '$id' ";
 
     mysqli_query($conexion, $consulta);
 
-    header('Location: views/tables.php');
+
+    echo ("<script> window.location='views/tables.php'; </script>");
 }
 
 function eliminar_registro()
 {
+
+
     $conexion = mysqli_connect("localhost", "root", "", "alba");
+
     extract($_POST);
     $id = $_POST['id'];
     $consulta = "DELETE FROM usuarios WHERE id= $id";
 
+
+
     mysqli_query($conexion, $consulta);
 
 
-    header('Location: views/tables.php');
+    echo ("<script> window.location='views/tables.php'; </script>");
 }

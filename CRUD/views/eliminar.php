@@ -1,11 +1,16 @@
-<?php
+<?php 
+
+
 session_start();
 
-if (!isset($_SESSION['rol'])) {
+$_SESSION['usuario'];
+
+if (!isset($_SESSION['usuario']['rol_id'])) {
     echo ("<script> window.location='../../login.php';</script>");
 } else {
-    if ($_SESSION['rol'] != 1) {
-        echo ("<script> window.location='../../login.php';</script>");
+    if ($_SESSION['usuario']['rol_id'] != 1) {
+        //echo ("<script> window.location='../../login.php';</script>");
+        echo ("<script> aaaaaaaaaaaa</script>");
     }
 }
 

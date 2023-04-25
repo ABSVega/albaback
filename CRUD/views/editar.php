@@ -1,19 +1,26 @@
-<?php
+<?php 
+
+
 session_start();
 
-if (!isset($_SESSION['rol'])) {
+$_SESSION['usuario'];
+
+if (!isset($_SESSION['usuario']['rol_id'])) {
     echo ("<script> window.location='../../login.php';</script>");
 } else {
-    if ($_SESSION['rol'] != 1) {
-        echo ("<script> window.location='../../login.php';</script>");
+    if ($_SESSION['usuario']['rol_id'] != 1) {
+        //echo ("<script> window.location='../../login.php';</script>");
+        echo ("<script> aaaaaaaaaaaa</script>");
     }
 }
 
-$id = $_GET['id'];
+$id=$_SESSION['usuario']['id'];
+
+/*
 $conexion = mysqli_connect("localhost", "root", "", "alba");
 $consulta = "SELECT * FROM usuarios WHERE id = $id";
 $resultado = mysqli_query($conexion, $consulta);
-$usuario = mysqli_fetch_assoc($resultado);
+$usuario = mysqli_fetch_assoc($resultado); */
 
 ?>
 <!DOCTYPE html>
@@ -43,26 +50,26 @@ $usuario = mysqli_fetch_assoc($resultado);
                             <h3 class="text-center">Editar usuario</h3>
                             <div class="form-group">
                                 <label for="nombre" class="form-label">Nombre *</label>
-                                <input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $usuarios['nombre']; ?>" required>
+                                <input type="text" id="nombre" name="nombre" class="form-control" value="<?php echo $_SESSION['usuario']['nombre']; ?>" required>
                             </div>
                             <div class="form-group">
                                 <label for="username">Correo:</label><br>
-                                <input type="email" name="correo" id="correo" class="form-control" placeholder="" value="<?php echo $usuarios['correo']; ?>">
+                                <input type="email" name="correo" id="correo" class="form-control" placeholder="" value="<?php echo $_SESSION['usuario']['correo']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="telefono" class="form-label">Telefono *</label>
-                                <input type="tel" id="telefono" name="telefono" class="form-control" value="<?php echo $usuarios['telefono']; ?>" required>
+                                <input type="tel" id="telefono" name="telefono" class="form-control" value="<?php echo $_SESSION['usuario']['telefono']; ?>" required>
 
                             </div>
                             <div class="form-group">
                                 <label for="password">Contraseña:</label><br>
-                                <input type="password" name="password" id="password" class="form-control" value="<?php echo $usuarios['password']; ?>" required>
+                                <input type="password" name="password" id="password" class="form-control" value="<?php echo $_SESSION['usuario']['password']; ?>" required>
 
                             </div>
 
                             <div class="form-group">
                                 <label for="rol" class="form-label">Rol de usuario *</label>
-                                <input type="number" id="rol" name="rol" class="form-control" placeholder="Escribe el rol, 1 admin, 2 secretaria o 3 usuario.." value="<?php echo $usuarios['rol']; ?>" required>
+                                <input type="number" id="rol" name="rol" class="form-control" placeholder="Escribe el rol, 1 admin, 2 secretaria o 3 usuario.." value="<?php echo $_SESSION['usuario']['rol_id']; ?>" required>
                                 <input type="hidden" name="accion" value="editar_registro">
                                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                             </div>

@@ -19,7 +19,7 @@ if (!isset($_SESSION['rol'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bienvenido <?php echo $_SESSION['rol']; ?></title>
+    <title>Bienvenido <?php echo $_SESSION['nombre']; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -134,6 +134,19 @@ if (!isset($_SESSION['rol'])) {
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
+            </li>
+            
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="tables.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Tables</span></a>
+            </li> 
+            
+            <li class="nav-item">
+                <a class="nav-link" href="../salir.php">
+                <i class="bi bi-door-closed"></i>
+                    <span>Salir</span></a>
             </li>
 
             <!-- Divider -->
@@ -673,7 +686,7 @@ if (!isset($_SESSION['rol'])) {
                 <div class="modal-body">Recuerda guardar tus ultimas acciones dentro de la plataforma</div>
                 <div class="modal-footer">
                     <button class="btn btn-danger" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-warning" href="../CRUD/logout.php">Salir</a>
+                    <a class="btn btn-warning" href="../logout.php">Salir</a>
                 </div>
             </div>
         </div>

@@ -1,11 +1,16 @@
 <?php
+
+
 session_start();
 
-if (!isset($_SESSION['rol'])) {
+$_SESSION['usuario'];
+
+if (!isset($_SESSION['usuario']['rol_id'])) {
     echo ("<script> window.location='../../login.php';</script>");
 } else {
-    if ($_SESSION['rol'] != 1) {
-        echo ("<script> window.location='../../login.php';</script>");
+    if ($_SESSION['usuario']['rol_id'] != 1) {
+        //echo ("<script> window.location='../../login.php';</script>");
+        echo ("<script> aaaaaaaaaaaa</script>");
     }
 }
 ?>
@@ -135,6 +140,12 @@ if (!isset($_SESSION['rol'])) {
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="../../salir.php">
+                <i class="bi bi-door-closed"></i>
+                    <span>Salir</span></a>
             </li>
 
             <!-- Divider -->

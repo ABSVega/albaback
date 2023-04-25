@@ -40,12 +40,13 @@ if (isset($_POST['correo']) && isset($_POST['password'])) {
                 break;
 
             case 2;
-                header('location: secretaria.php');
+              echo ("<script> window.location='secretaria.php'; </script>");
+         
                 break;
 
                 case 3;
                
-                echo ("<script> window.location='CRUD/admin.php'; </script>");
+                echo ("<script> window.location='usuario.php'; </script>");
                 break;
 
             default:

@@ -27,12 +27,12 @@ if (isset($_POST['correo']) && isset($_POST['password'])) {
     $password = $_POST['password'];
 
     $db = new Database();
-    $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE $correo = :correo AND password = :password LIMIT 1');
+    $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE correo=:correo AND password=:password LIMIT 1');
     $query->execute(['correo' => $correo, 'password' => $password]);
 
     $row = $query->fetch(PDO::FETCH_NUM);
     if ($row == true) {
-        $rol = $row[3];
+        $rol = $row[6];
         $_SESSION['rol'] = $rol;
         switch ($_SESSION['rol']) {
             case 1;
@@ -40,7 +40,13 @@ if (isset($_POST['correo']) && isset($_POST['password'])) {
                 break;
 
             case 2;
-                header('location: secretaria.php');
+              echo ("<script> window.location='secretaria.php'; </script>");
+         
+                break;
+
+                case 3;
+               
+                echo ("<script> window.location='usuario.php'; </script>");
                 break;
 
             default:

@@ -1,4 +1,6 @@
 <?php
+
+/*
 include_once 'config/database.php';
 session_start();
 
@@ -16,7 +18,7 @@ if (isset($_SESSION['rol'])) {
 
         case 2;
             header('location: secretaria.php');
-            break;
+            break;  
 
         default:
     }
@@ -28,13 +30,14 @@ if (isset($_POST['correo']) && isset($_POST['password'])) {
 
     $db = new Database();
     $query = $db->connect()->prepare('SELECT * FROM usuarios WHERE correo = :correo AND password = :password LIMIT 1');
-    $query->execute(['correo' => $correo, 'password' => $password]);
+    //$query->execute(['correo' => $correo, 'password' => $password]);
 
     $row = $query->fetch(PDO::FETCH_NUM);
+
+    
     if ($row == true) {
-        $rol = $row[6];
-        $_SESSION['rol'] = $rol;
-        switch ($_SESSION['rol']) {
+        $_SESSION['usuario'] = $row;
+        switch ($_SESSION['usuario']['rol_id']) {
             case 1;
                 echo ("<script> window.location='CRUD/views/admin.php'; </script>");
                 break;
@@ -48,7 +51,66 @@ if (isset($_POST['correo']) && isset($_POST['password'])) {
     } else {
         echo "<div></div>";
     }
-}
+}*/
+
+error_reporting(E_ERROR | E_PARSE); 
+
+
+
+
+$mysqli=new mysqli("localhost","root","","alba");
+if ($mysqli->connect_errno) {
+  //Si hay un error, se muestr un mensaje con el error
+  echo "Error al conectarse con My SQL debido al error".$mysqli->connect_error;
+};
+
+
+session_start();
+
+$correo = $_POST['correo'];
+$password = $_POST['password'];
+
+//indica el rol del correo y la clave tales como instalador, administrador etc.
+$usuarios=$mysqli->query("SELECT * FROM usuarios Where correo='".$correo."' AND password='".$password."'");
+if ($usuarios->num_rows==1):
+  /*valida que si hay un usuario que coincidan sus datos, ejecute la consulta 
+  y guarde los resultados en la variable datos*/
+  $datos= $usuarios->fetch_assoc();
+  
+  //toma los datros de la consulta y los guarda en la sesion "usuario
+  $_SESSION['usuario']= $datos;
+  //Si se ejecuta, manda que no hay error, y te muestra el rol tomado
+  //  echo json_encode(array('error'=>false,'rol_id'=>$datos['rol_id']));
+
+
+    if ($datos['rol_id'] == true) {
+        switch ($datos['rol_id']) {
+            case 1;
+            echo ("<script> window.location='CRUD/views/admin.php'; </script>");
+   
+                break;
+
+            case 2;
+            echo ("<script> window.location='secretaria.php'; </script>");
+              
+                break;
+
+            default:
+        }
+    } else {
+        echo "<div></div>";
+    }
+
+
+
+else:
+
+    //si no se ejecuta, te muestra que hay un error
+endif;
+
+$mysqli->close();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

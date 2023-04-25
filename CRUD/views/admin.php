@@ -2,10 +2,10 @@
 session_start();
 
 if (!isset($_SESSION['rol'])) {
-    echo ("<script> window.location='../login.php';</script>");
+    echo ("<script> window.location='../../login.php';</script>");
 } else {
     if ($_SESSION['rol'] != 1) {
-        echo ("<script> window.location='../login.php';</script>");
+        echo ("<script> window.location='../../login.php';</script>");
     }
 }
 ?>
@@ -22,11 +22,11 @@ if (!isset($_SESSION['rol'])) {
     <title>Bienvenido <?php echo $_SESSION['rol']; ?></title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -41,7 +41,7 @@ if (!isset($_SESSION['rol'])) {
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <img src="../img/ALBA_WEB_ELEMENTS-01.png" alt="" srcset="">
+                    <img src="../../img/ALBA_WEB_ELEMENTS-01.png" alt="alba_logo" srcset="" style="width: 40px;">
                 </div>
                 <div class="sidebar-brand-text mx-3">Alba admin</div>
             </a>
@@ -56,6 +56,11 @@ if (!isset($_SESSION['rol'])) {
                     <span>Dashboard</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="tables.php">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Usuarios</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -129,13 +134,6 @@ if (!isset($_SESSION['rol'])) {
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Charts</span></a>
-            </li>
-
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span></a>
             </li>
 
             <!-- Divider -->
@@ -260,7 +258,7 @@ if (!isset($_SESSION['rol'])) {
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -271,7 +269,7 @@ if (!isset($_SESSION['rol'])) {
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -282,7 +280,7 @@ if (!isset($_SESSION['rol'])) {
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
+                                        <img class="rounded-circle" src="../img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -307,12 +305,11 @@ if (!isset($_SESSION['rol'])) {
                         </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
-
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['nombre']; ?></span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['rol']; ?></span>
+                                <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -339,6 +336,7 @@ if (!isset($_SESSION['rol'])) {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                    <h1 class="h3 mb-2 text-Dark-1000">Hola de nuevo <?php echo $_SESSION['rol'];?></h1>
                     <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -682,21 +680,21 @@ if (!isset($_SESSION['rol'])) {
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
+    <script src="../js/demo/chart-pie-demo.js"></script>
 
 </body>
 

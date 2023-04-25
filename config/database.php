@@ -18,7 +18,6 @@ class Database
 
     function connect()
     {
-
         try {
             $connection = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=" . $this->charset;
             $options = [

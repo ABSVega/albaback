@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,6 +31,7 @@
     <meta property="twitter:description" content="Transforma tu hogar en un espacio inteligente con nuestros servicios de domótica">
     <meta property="twitter:image" content="">
 </head>
+
 <body onload="agregarClase()">
     <!--Esto es el menu inicial-->
     <header>
@@ -365,13 +367,14 @@
                         </div>
 
                         <div class="contact__form">
-                            <form enctype="multipart/form-data" id="frmajax" method="POST" action="php/cruds/contactos/agregarContacto.php">
+                            <form enctype="multipart/form-data" id="frmajax" method="POST">
 
                                 <input type="text" id="name" name="name" placeholder="Nombre" required class="input__required">
                                 <input type="tel" id="phone" name="phone" placeholder="Teléfono" required class="input__required">
                                 <input type="email" id="email" name="email" placeholder="Correo electronico" required class="input__required">
-                                <textarea id="comments" name="comments" placeholder="Comentarios" class="input__required"></textarea>
-                                <input type="submit" value="Enviar" class="button">
+                                <textarea id="comments" name="message" placeholder="Comentarios" class="input__required"></textarea>
+                                <input type="submit" name="contact" value="Enviar" class="button">
+                                <?php include("contacto.php")?>
                             </form>
                         </div>
                     </div>

@@ -11,11 +11,15 @@ if (isset($_GET['cerrar_session'])) {
 if (isset($_SESSION['rol'])) {
     switch ($_SESSION['rol']) {
         case 1;
-            echo ("<script> window.location='CRUD/admin.php'; </script>");
+            echo ("<script> window.location='CRUD/views/admin.php'; </script>");
             break;
 
         case 2;
-            header('location: secretaria.php');
+            header('location:CRUD/views/secretaria_admin.php');
+            break;
+
+        case 3;
+            header('location:CRUD/views/usuarios_admin.php');
             break;
 
         default:
@@ -40,7 +44,11 @@ if (isset($_POST['correo']) && isset($_POST['password'])) {
                 break;
 
             case 2;
-                header('location: secretaria.php');
+                header('location: CRUD/views/secretaria_admin.php');
+                break;
+
+            case 3;
+                header('location:CRUD/views/usuarios_admin.php');
                 break;
 
             default:

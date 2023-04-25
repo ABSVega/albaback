@@ -19,7 +19,7 @@ if (!isset($_SESSION['rol'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bienvenido <?php echo $_SESSION['rol']; ?></title>
+    <title>Bienvenido <?php echo $_SESSION['nombre']; ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -136,6 +136,12 @@ if (!isset($_SESSION['rol'])) {
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
+            </li> 
+            
+            <li class="nav-item">
+                <a class="nav-link" href="../salir.php">
+                <i class="bi bi-door-closed"></i>
+                    <span>Salir</span></a>
             </li>
 
             <!-- Divider -->

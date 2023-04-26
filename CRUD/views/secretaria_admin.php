@@ -1,11 +1,14 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['rol'])) {
-    header('location:../../login.php');
+$_SESSION['usuario'];
+
+if (!isset($_SESSION['usuario']['rol_id'])) {
+    echo ("<script> window.location='../../login.php';</script>");
 } else {
-    if ($_SESSION['rol'] != 2) {
-        header('location:../../login.php');
+    if ($_SESSION['usuario']['rol_id'] != 2) {
+        //echo ("<script> window.location='../../login.php';</script>");
+        echo ("<script> aaaaaaaaaaaa</script>");
     }
 }
 ?>
@@ -256,7 +259,7 @@ if (!isset($_SESSION['rol'])) {
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['rol']; ?></span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['usuario']['nombre'];?></span>
                                 <img class="img-profile rounded-circle" src="../img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -284,7 +287,7 @@ if (!isset($_SESSION['rol'])) {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <h1 class="h3 mb-2 text-Dark-1000">Hola de nuevo <?php echo $_SESSION['rol']; ?></h1>
+                    <h1 class="h3 mb-2 text-Dark-1000">Hola de nuevo <?php echo $_SESSION['usuario']['nombre'];?></h1>
                     <div class="row">
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">

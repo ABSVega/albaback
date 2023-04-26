@@ -5,18 +5,20 @@ if (isset($_POST['contact'])) {
     if (
         strlen($_POST['name']) >= 1 &&
         strlen($_POST['email']) >= 1 &&
+        strlen($_POST['subject']) >= 1 &&
         strlen($_POST['phone']) >= 1 &&
         strlen($_POST['message']) >= 1
     ) {
 
         $name = trim($_POST['name']);
         $email = trim($_POST['email']);
+        $subject = trim($_POST['subject']);
         $phone = trim($_POST['phone']);
         $message = trim($_POST['message']);
         $fecha = date("d/m/y");
 
-        $consulta = "INSERT INTO datos(nombre, email, telefono, mensaje, fecha)
-        VALUES ('$name', '$email', '$phone', '$message', '$fecha')";
+        $consulta = "INSERT INTO datos(nombre, email, asunto, telefono, mensaje, fecha)
+        VALUES ('$name', '$email', '$subject', '$phone', '$message', '$fecha')";
 
         $resultado = mysqli_query($conex, $consulta);
 

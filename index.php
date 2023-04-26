@@ -372,6 +372,7 @@
                                 <input type="text" id="name" name="name" placeholder="Nombre" required class="input__required">
                                 <input type="tel" id="phone" name="phone" placeholder="Teléfono" required class="input__required">
                                 <input type="email" id="email" name="email" placeholder="Correo electronico" required class="input__required">
+                                <input type="text" id="asunto" name="subject" placeholder="Asunto" required class="input__required">
                                 <textarea id="comments" name="message" placeholder="Comentarios" class="input__required"></textarea>
                                 <input type="submit" name="contact" value="Enviar" class="button">
                                 <?php include("contacto.php")?>

@@ -10,10 +10,10 @@ if (isset($_POST['accion'])) {
         case 'eliminar_registro':
             eliminar_registro($conexion);
             break;
-
+/*
         case 'agregar_registro':
             agregar_usuario($conexion);
-            break;
+            break;*/
 
         default:
             // Manejar caso no reconocido
@@ -42,11 +42,27 @@ function eliminar_registro($conexion)
     redirigir('views/tables.php');
 }
 
-function agregar_usuario($conexion)
+
+
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nombre = $_POST["nombre"];
+    $email = $_POST["correo"];
+    $telefono = $_POST["telefono"];
+    $password = $_POST["password"];
+    $rol=$_POST["rol"];
+  
+    agregar_usuario($conexion,$nombre, $email, $telefono, $password, $rol);
+  
+    exit();
+  }
+
+
+function agregar_usuario($conexion,$nombre, $email, $telefono, $password,$rol)
 {
     $consulta = "INSERT INTO usuarios (nombre, correo, telefono, password, fecha, rol_id) VALUES (?, ?, ?, ?, NOW(), ?)";
     $stmt = mysqli_prepare($conexion, $consulta);
-    mysqli_stmt_bind_param($stmt, 'ssssi', $_POST['nombre'], $_POST['correo'], $_POST['telefono'], $_POST['password'], $_POST['rol']);
+    mysqli_stmt_bind_param($stmt, 'ssssi', $nombre, $email, $telefono, $password, $rol);
     mysqli_stmt_execute($stmt);
 
     redirigir('views/tables.php');

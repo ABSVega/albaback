@@ -304,7 +304,18 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
                                             </div>
                                             <div class="form-group">
                                                 <label for="rol" class="form-label">Rol<span style="color: red;">*</span>:</label>
-                                                <input type="number" id="rol" name="rol" class="form-control" placeholder="Admin:1, Secretaria:2, Usuario:3." value="" required>
+                                              
+                                                <select id="rol" class="form-control" name="rol" name="nombre_del_select">
+  <option value=1 >Admin</option>
+  <option value=2 selected>Secretaria</option>
+  <option value=3>Usuario</option>
+  ...
+</select>
+                                              
+                                              
+                                              
+                                              
+                                              
                                                 <input type="hidden" name="accion" value="agregar_usuario">
                                                 <input type="hidden" name="id" value="">
                                             </div>

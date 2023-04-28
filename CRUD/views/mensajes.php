@@ -12,16 +12,6 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
     }
 }
 
-$conn = mysqli_connect("localhost", "root", "", "alba");
-
-$resultado = mysqli_query($conn, "SELECT id, nombre, mensaje FROM datos WHERE 1");
-
-while ($fila = mysqli_fetch_assoc($resultado)){
-    $id = $fila ['id'];
-    $nombre = $fila ['nombre'];
-    $mensaje = $fila ['mensaje'];
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -309,28 +299,12 @@ while ($fila = mysqli_fetch_assoc($resultado)){
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <!-- Modal -->
-                    <div class="modal fade" id="<?php echo $id?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Mensaje de: "<?php echo $nombre ?>"</h5>
-                                </div>
-                                <div class="modal-body">
-                                    <?php echo $mensaje?>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger bt-md" data-bs-dismiss="modal">Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!-- Page Heading -->
                     <p class="mb-4">Recuerda modificar los datos de manera correcta. <a target="_blank" href="https://datatables.net">En caso de errores ponte en contacto con el soporte</a>.</p>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Mensajes Recibidos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Mensajes Recibidos:</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -354,6 +328,24 @@ while ($fila = mysqli_fetch_assoc($resultado)){
                                         if ($dato->num_rows > 0) {
                                             while ($fila = mysqli_fetch_array($dato)) {
                                         ?>
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="modal-<?php echo $fila['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Mensaje de: "<span style="font-weight: bold;"><?php echo $fila['nombre'] ?></span>"</h5>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p style="text-align: justify;">
+                                                                    <?php echo $fila['mensaje'] ?>
+                                                                </p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-danger bt-md" data-bs-dismiss="modal">Cerrar</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <tr>
                                                     <td><?php echo $fila['nombre']; ?></td>
                                                     <td><?php echo $fila['email']; ?></td>
@@ -362,7 +354,7 @@ while ($fila = mysqli_fetch_assoc($resultado)){
                                                     <td><?php echo $fila['fecha']; ?></td>
 
                                                     <td style="text-align: center;">
-                                                        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#<?php echo $id?>">
+                                                        <a class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modal-<?php echo $fila['id']; ?>">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
                                                         <a class="btn btn-success" href="">

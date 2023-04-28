@@ -1,4 +1,6 @@
 <?php
+require_once '../function.php';
+
 session_start();
 
 $_SESSION['usuario'];
@@ -65,49 +67,6 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
                     <i class="fas fa-fw fa-table"></i>
                     <span>Usuarios</span></a>
             </li>
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Components</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-            <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -302,7 +261,6 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
                         </li>
 
                     </ul>
-
                 </nav>
                 <!-- End of Topbar -->
                 <!-- Begin Page Content -->
@@ -312,8 +270,53 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Usuarios</h6>
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Agregar usuario</button>
                         </div>
+
+                        <!-- Modal de confirmación para editar un registro -->
+                        <?php ?>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Agregar usurio</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="../function.php" method="POST">
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Nombre<span style="color: red;">*</span>:</label>
+                                                <input type="text" class="form-control" id="nombre" name="nombre" value="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Correo<span style="color: red;">*</span>:</label>
+                                                <input type="text" class="form-control" id="correo" name="correo" value="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Telefono<span style="color: red;">*</span>:</label>
+                                                <input type="text" class="form-control" id="telefono" name="telefono" value="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="recipient-name" class="col-form-label">Contraseña<span style="color: red;">*</span>:</label>
+                                                <input type="text" class="form-control" id="password" name="password" value="" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="rol" class="form-label">Rol<span style="color: red;">*</span>:</label>
+                                                <input type="number" id="rol" name="rol" class="form-control" placeholder="Admin:1, Secretaria:2, Usuario:3." value="" required>
+                                                <input type="hidden" name="accion" value="agregar_usuario">
+                                                <input type="hidden" name="id" value="">
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success">Agregar</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -325,7 +328,7 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
                                             <th>Telefono</th>
                                             <th>Fecha</th>
                                             <th>Rol</th>
-                                            <th>Acciones</th>
+                                            <th style="text-align: center;">Acciones</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -337,6 +340,72 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
                                         if ($dato->num_rows > 0) {
                                             while ($fila = mysqli_fetch_array($dato)) {
                                         ?>
+                                                <!-- Modal de confirmación para editar un registro -->
+                                                <div class="modal fade" id="exampleModal-<?php echo $fila['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Editar usuario</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="../function.php" method="POST">
+                                                                    <div class="form-group">
+                                                                        <label for="recipient-name" class="col-form-label">Nombre<span style="color: red;">*</span>:</label>
+                                                                        <input type="text" class="form-control" id="nombre" name="nombre" value="<?php echo $fila['nombre']; ?>" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="recipient-name" class="col-form-label">Correo<span style="color: red;">*</span>:</label>
+                                                                        <input type="text" class="form-control" id="correo" name="correo" value="<?php echo $fila['correo']; ?>" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="recipient-name" class="col-form-label">Telefono<span style="color: red;">*</span>:</label>
+                                                                        <input type="text" class="form-control" id="telefono" name="telefono" value="<?php echo $fila['telefono']; ?>" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="recipient-name" class="col-form-label">Contraseña<span style="color: red;">*</span>:</label>
+                                                                        <input type="text" class="form-control" id="password" name="password" value="<?php echo $fila['password']; ?>" required>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="rol" class="form-label">Rol<span style="color: red;">*</span>:</label>
+                                                                        <input type="number" id="rol" name="rol" class="form-control" placeholder="Admin:1, Secretaria:2, Usuario:3." value="<?php echo $fila['rol']; ?>" required>
+                                                                        <input type="hidden" name="accion" value="editar_registro">
+                                                                        <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
+                                                                    </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-warning">Editar</button>
+                                                            </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Modal de confirmación para eliminar registro -->
+                                                <div class="modal fade" id="modaldelete-<?php echo $fila['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Confirmación de eliminación</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body" style="text-align: center; font-size: x-large;">
+                                                                ¿Está seguro que desea eliminar este registro?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <form action="../function.php" method="POST">
+                                                                    <input type="hidden" name="accion" value="eliminar_registro">
+                                                                    <input type="hidden" name="id" value="<?php echo $fila['id']; ?>">
+                                                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <tr>
                                                     <td><?php echo $fila['nombre']; ?></td>
                                                     <td><?php echo $fila['correo']; ?></td>
@@ -345,12 +414,14 @@ if (!isset($_SESSION['usuario']['rol_id'])) {
                                                     <td><?php echo $fila['fecha']; ?></td>
                                                     <td><?php echo $fila['rol']; ?></td>
 
-                                                    <td>
-                                                        <a class="btn btn-warning" href="../views/editar.php?id=<?php echo $fila['id'] ?> ">
-                                                            <i class="fa fa-edit"></i> </a>
+                                                    <td style="text-align: center;">
+                                                        <a class="btn btn-warning" data-toggle="modal" data-target="#exampleModal-<?php echo $fila['id'] ?>" data-whatever="@mdo">
+                                                            <i class="fas fa-user-edit"></i>
+                                                        </a>
 
-                                                        <a class="btn btn-danger" href="../views/eliminar.php?id=<?php echo $fila['id'] ?>">
-                                                            <i class="fa fa-trash"></i></a>
+                                                        <a class="btn btn-danger" title="Eliminar usuario" data-toggle="modal" data-target="#modaldelete-<?php echo $fila['id'] ?>">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
                                                     </td>
                                                 <?php
                                             }
